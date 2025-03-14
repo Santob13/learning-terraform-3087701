@@ -73,8 +73,7 @@ module "blog_alb" {
           port      = 80
         }
       }
-          
-  }
+    }
 
   tags = {
     Environment = "dev"

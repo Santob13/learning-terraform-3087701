@@ -63,11 +63,17 @@ module "blog_alb" {
 
   target_groups = {
     {
-      name_prefix      = "blog-alb"
-      protocol         = "HTTP"
-      port             = 80
+      name_prefix      = "blog-"
+      backend_protocol = "HTTP"
+      backend_port     = 80
       target_type      = "instance"
-      target_id        = aws_instance.blog.id    
+      targets = {
+        my_target = {
+          target_id = aws_instance.blog.id
+          port      = 80
+        }
+      }
+          
   }
 
   tags = {

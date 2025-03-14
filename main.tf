@@ -74,11 +74,12 @@ module "blog_alb" {
         }
       }
     }
+  }
 
   tags = {
     Environment = "dev"
     Project     = "Example"
-  }
+    }
 }
 
 module "blog_sg" {
@@ -93,5 +94,4 @@ module "blog_sg" {
 
   egress_rules       = ["all-all"]
   egress_cidr_blocks = ["0.0.0.0/0"]
-  }
 }

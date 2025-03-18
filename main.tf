@@ -29,22 +29,6 @@ module "blog_vpc" {
   }
 }
 
-module "autoscaling" {
-  source  = "terraform-aws-modules/autoscaling/aws"
-  version = "8.1.0"
-
-  name = "blog"
-  min_size = 1
-  max_size = 2
-
-  vpc_zone_identifier = module.blog_vpc.public_subnets
-  
-  security_groups        = [module.blog_sg.security_group_id]
-  autoscaling_group_name = aws_autoscaling_group.blog.id
-  image_id               = data.aws_ami.app_ami.id
-  instance_type          = var.instance_type
-}
-
 module "blog_alb" {
   source  = "terraform-aws-modules/alb/aws"
   version = "~> 6.0"
